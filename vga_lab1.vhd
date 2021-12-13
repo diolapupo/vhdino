@@ -9,8 +9,8 @@ generic(image_Width  : INTEGER := 318; -- Width of image in memory
         addressSize  : integer := 15); -- MSB of addresses
 port(clk50MHz  : in std_logic;
      chooseRes : in std_logic;
-	  moveUp : in std_logic;
-	  moveDown : in std_logic;
+	  moveleft : in std_logic;
+	  moveright : in std_logic;
      r         : out std_logic_vector(3 downto 0);
      g         : out std_logic_vector(3 downto 0);
      b         : out std_logic_vector(3 downto 0);
@@ -87,8 +87,8 @@ begin
 	process(sync2_clk)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
-	variable image_hstart       : integer := hcentre      - image_Width/2;
-	variable image_hstop        : integer := image_hstart + image_Width;
+	variable image_hstart       : integer :=  0;--hcentre      - image_Width/2;
+	variable image_hstop        : integer := image_Width;--image_hstart + image_Width;
 	variable image_vstart       : integer := vcentre    - image_Height/2;
 	variable image_vstop        : integer := vcentre    + image_Height/2;
 	variable image_pixel_col    : integer := 0;
@@ -96,11 +96,37 @@ begin
 	variable image_pixel_number : integer := 0;
 	variable mem_Address        : unsigned(addressSize downto 0) := (others=>'0');
 --	variable imgOffset          : integer := 4;
+	variable count: integer :=0;
 	begin
 		if rising_edge(sync2_clk) then
 			-- Always increment the horizontal position counter with each active clock pulse
 			hposition <= hposition + 1;
+			if count >= 1000000 then
+				if moveright = '1' then
+					image_hstart := image_hstart + 1;
+					image_hstop  := image_hstop+1;
+					count :=0;
+				elsif moveleft = '1' then
+					image_hstart := image_hstart - 1;
+					image_hstop  := image_hstop -  1;
+					count :=0;
+				end if;
+			else
+				count := count+1;
+			end if;
+			if  image_hstart >= (hfp+hsp+hbp+hva) then
+				image_hstart := 0;
+			end if;
+			if  image_hstop >= (hfp+hsp+hbp+hva) then
+				image_hstop := 1;
+			end if;
 			
+			if  image_hstart <= 0 then
+				image_hstart := (hfp+hsp+hbp+hva);
+			end if;
+			if  image_hstop <= 0 then
+				image_hstop := (hfp+hsp+hbp+hva);
+			end if;
 			-- When horizontal position counter gets to the last pixel in a row, go back
 			-- to zero and increment the vertical counter (i.e. go to start of next line)
 			if hposition >= (hfp+hsp+hbp+hva) then
