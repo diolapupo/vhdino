@@ -3,8 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity vga_lab1 is
-generic(image_Width  : INTEGER := 318; -- Width of image in memory
-        image_Height : INTEGER := 159; -- Height of image in memory
+generic(bg_width  : INTEGER := 300; -- Width of bac
+        bg_Height : INTEGER := 50; -- Height of image in memory
         dataSize     : INTEGER := 11;  -- MSB of each row in memory
         addressSize  : integer := 15); -- MSB of addresses
 port(clk50MHz  : in std_logic;
@@ -19,15 +19,7 @@ port(clk50MHz  : in std_logic;
 end entity vga_lab1;
 
 architecture display of vga_lab1 is
-	-- Parameters for a 640x480 display
-	constant hfp480p  : integer   := 16;
-	constant hsp480p  : integer   := 96;
-	constant hbp480p  : integer   := 48;
-	constant hva480p  : integer   := 640;
-	constant vfp480p  : integer   := 10;
-	constant vsp480p  : integer   := 2;
-	constant vbp480p  : integer   := 33;
-	constant vva480p  : integer   := 480;
+
 	-- Parameters for a 1024x768 display
 	constant hfp768p  : integer   := 24;
 	constant hsp768p  : integer   := 136;
@@ -60,20 +52,20 @@ architecture display of vga_lab1 is
 	signal raw_data     : std_logic_vector(dataSize downto 0)    := (others=>'0');
 --	signal hcentre            : integer := hfp + hsp + hbp + (hva/2);
 --	signal vcentre            : integer := vfp + vsp + vbp + (vva/2);
---	signal image_hstart       : integer := hcentre      - image_Width/2;
---	signal image_hstop        : integer := image_hstart + image_Width;
---	signal image_vstart       : integer := vcentre    - image_Height/2;
---	signal image_vstop        : integer := vcentre    + image_Height/2;
+--	signal image_hstart       : integer := hcentre      - bg_width/2;
+--	signal image_hstop        : integer := image_hstart + bg_width;
+--	signal image_vstart       : integer := vcentre    - bg_Height/2;
+--	signal image_vstop        : integer := vcentre    + bg_Height/2;
 begin
-	sync2_clk<= clk25   when (chooseRes = '0') else clk65;
-	hfp      <= hfp480p when (chooseRes = '0') else hfp768p;
-	hsp      <= hsp480p when (chooseRes = '0') else hsp768p;
-	hbp      <= hbp480p when (chooseRes = '0') else hbp768p;
-	hva      <= hva480p when (chooseRes = '0') else hva768p;
-	vfp      <= vfp480p when (chooseRes = '0') else vfp768p;
-	vsp      <= vsp480p when (chooseRes = '0') else vsp768p;
-	vbp      <= vbp480p when (chooseRes = '0') else vbp768p;
-	vva      <= vva480p when (chooseRes = '0') else vva768p;
+	sync2_clk<= clk65;
+	hfp      <= hfp768p;
+	hsp      <= hsp768p;
+	hbp      <= hbp768p;
+	hva      <= hva768p;
+	vfp      <= vfp768p;
+	vsp      <= vsp768p;
+	vbp      <= vbp768p;
+	vva      <= vva768p;
 	
 	disp_clk: work.sync_clk port map(inclk0 => clk50MHz,
                                     c0     => clk25,
@@ -87,10 +79,12 @@ begin
 	process(sync2_clk)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
-	variable image_hstart       : integer :=  0;--hcentre      - image_Width/2;
-	variable image_hstop        : integer := image_Width;--image_hstart + image_Width;
-	variable image_vstart       : integer := vcentre    - image_Height/2;
-	variable image_vstop        : integer := vcentre    + image_Height/2;
+	variable vbottom				 : integer := vfp + vsp + vbp + (vva);
+	variable hend               : integer := hfp + hsp + hbp + (hva);
+	variable image_hstart       : integer :=  hend - bg_width;--hcentre      - bg_width/2;
+	variable image_hstop        : integer := hend;--image_hstart + bg_width;
+	variable image_vstart       : integer := vbottom    - bg_Height-5;
+	variable image_vstop        : integer := vbottom-5;
 	variable image_pixel_col    : integer := 0;
 	variable image_pixel_row    : integer := 0;
 	variable image_pixel_number : integer := 0;
@@ -102,31 +96,31 @@ begin
 			-- Always increment the horizontal position counter with each active clock pulse
 			hposition <= hposition + 1;
 			if count >= 1000000 then
-				if moveright = '1' then
-					image_hstart := image_hstart + 1;
-					image_hstop  := image_hstop+1;
-					count :=0;
-				elsif moveleft = '1' then
+				--if moveright = '1' then
+					--image_hstart := image_hstart + 1;
+					--image_hstop  := image_hstop+1;
+					--count :=0;
+				--else
 					image_hstart := image_hstart - 1;
 					image_hstop  := image_hstop -  1;
 					count :=0;
-				end if;
+				--end if;
 			else
 				count := count+1;
 			end if;
-			if  image_hstart >= (hfp+hsp+hbp+hva) then
-				image_hstart := 0;
+			if  image_hstart <= (hfp+hsp+hbp) then
+				image_hstart := hend - bg_width;
 			end if;
-			if  image_hstop >= (hfp+hsp+hbp+hva) then
-				image_hstop := 1;
+			if  image_hstop <= (hfp+hsp+hbp+bg_width) then
+				image_hstop := hend;
 			end if;
 			
-			if  image_hstart <= 0 then
-				image_hstart := (hfp+hsp+hbp+hva);
-			end if;
-			if  image_hstop <= 0 then
-				image_hstop := (hfp+hsp+hbp+hva);
-			end if;
+		---	if  image_hstart <= 0 then
+	--			image_hstart := (hfp+hsp+hbp+hva);
+		--	end if;
+		--	if  image_hstop <= 0 then
+		--		image_hstop := (hfp+hsp+hbp+hva);
+		--	end if;
 			-- When horizontal position counter gets to the last pixel in a row, go back
 			-- to zero and increment the vertical counter (i.e. go to start of next line)
 			if hposition >= (hfp+hsp+hbp+hva) then
@@ -169,13 +163,13 @@ begin
 			if ((hposition >= image_hstart and hposition <= image_hstop) and (vposition >= image_vstart and vposition <= image_vstop)) then
 				image_pixel_col := hposition - image_hstart;
 				image_pixel_row := vposition - image_vstart;
-				image_pixel_number := image_pixel_col + image_pixel_row*image_Width;
+				image_pixel_number := image_pixel_col + image_pixel_row*bg_width;
 				mem_Address  := to_unsigned(image_pixel_number, mem_Address'length);
 				data_address <= std_logic_vector(mem_Address);
 		--		r <= x"9";
 		--      g <= x"9";
 		--      b <= x"0";
-				r <= x"0";
+				r <= x"F";
 				g <= x"F";
 				b <= x"F";
 			else
