@@ -3,15 +3,12 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity vga_lab1 is
-generic(bg_width        : INTEGER := 512; -- Width of bac
-        bg_Height       : INTEGER := 40; -- Height of image in memory
-        dataSize        : INTEGER := 11;  -- MSB of each row in memory
-        addressSize     : integer := 15;
-        bgAddressSize   : integer := 14); 
+generic(image_Width  : INTEGER := 227; -- Width of image in memory
+        image_Height : INTEGER := 222; -- Height of image in memory
+        dataSize     : INTEGER := 11;  -- MSB of each row in memory
+        addressSize  : integer := 15); -- MSB of addresses
 port(clk50MHz  : in std_logic;
      chooseRes : in std_logic;
-	  moveleft : in std_logic;
-	  moveright : in std_logic;
      r         : out std_logic_vector(3 downto 0);
      g         : out std_logic_vector(3 downto 0);
      b         : out std_logic_vector(3 downto 0);
@@ -20,7 +17,15 @@ port(clk50MHz  : in std_logic;
 end entity vga_lab1;
 
 architecture display of vga_lab1 is
-
+	-- Parameters for a 640x480 display
+	constant hfp480p  : integer   := 16;
+	constant hsp480p  : integer   := 96;
+	constant hbp480p  : integer   := 48;
+	constant hva480p  : integer   := 640;
+	constant vfp480p  : integer   := 10;
+	constant vsp480p  : integer   := 2;
+	constant vbp480p  : integer   := 33;
+	constant vva480p  : integer   := 480;
 	-- Parameters for a 1024x768 display
 	constant hfp768p  : integer   := 24;
 	constant hsp768p  : integer   := 136;
@@ -49,26 +54,19 @@ architecture display of vga_lab1 is
 	signal   vposition  : integer   := 0;
 	-- Signals to hold the present memory address to be read and the data read
 	signal data_address : std_logic_vector(addressSize downto 0) := (others=>'0');
-	signal bg_address   : std_logic_vector(bgAddressSize downto 0) := (others=>'0');
 --	signal data_read    : std_logic_vector(dataSize downto 0)    := (others=>'0');
 	signal raw_data     : std_logic_vector(dataSize downto 0)    := (others=>'0');
-	signal bg_data     : std_logic_vector(dataSize downto 0)    := (others=>'0');
---	signal hcentre            : integer := hfp + hsp + hbp + (hva/2);
---	signal vcentre            : integer := vfp + vsp + vbp + (vva/2);
---	signal bg_hstart       : integer := hcentre      - bg_width/2;
---	signal bg_hstop        : integer := bg_hstart + bg_width;
---	signal bg_vstart       : integer := vcentre    - bg_Height/2;
---	signal bg_vstop        : integer := vcentre    + bg_Height/2;
+
 begin
-	sync2_clk<= clk65;
-	hfp      <= hfp768p;
-	hsp      <= hsp768p;
-	hbp      <= hbp768p;
-	hva      <= hva768p;
-	vfp      <= vfp768p;
-	vsp      <= vsp768p;
-	vbp      <= vbp768p;
-	vva      <= vva768p;
+	sync2_clk<= clk25   when (chooseRes = '0') else clk65;
+	hfp      <= hfp480p when (chooseRes = '0') else hfp768p;
+	hsp      <= hsp480p when (chooseRes = '0') else hsp768p;
+	hbp      <= hbp480p when (chooseRes = '0') else hbp768p;
+	hva      <= hva480p when (chooseRes = '0') else hva768p;
+	vfp      <= vfp480p when (chooseRes = '0') else vfp768p;
+	vsp      <= vsp480p when (chooseRes = '0') else vsp768p;
+	vbp      <= vbp480p when (chooseRes = '0') else vbp768p;
+	vva      <= vva480p when (chooseRes = '0') else vva768p;
 	
 	disp_clk: work.sync_clk port map(inclk0 => clk50MHz,
                                     c0     => clk25,
@@ -76,58 +74,23 @@ begin
 	imRead: work.image_mem port map(address => data_address,
                                   clock    => sync2_clk,
                                   q        => raw_data);
-	bgread: work.bg_spry port map(address => bg_address,
-                                  clock    => sync2_clk,
-                                  q        => bg_data);
---	bg_vstart <= bg_vstart-20 when (moveUp = '1') else bg_vstart;
---	bg_vstart <= bg_vstop-20 when (moveUp = '1') else bg_vstop;
-	
 	process(sync2_clk)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
-	variable vbottom				 : integer := vfp + vsp + vbp + (vva);
-	variable hend               : integer := hfp + hsp + hbp + (hva);
-	variable bg_hstart          : integer :=  hend - bg_width;--hcentre      - bg_width/2;
-	variable bg_hstop           : integer := hend;--bg_hstart + bg_width;
-	variable bg_vstart          : integer := vbottom    - bg_Height-5;
-	variable bg_vstop           : integer := vbottom-5;
+	variable image_hstart       : integer := hcentre      - image_Width/2;
+	variable image_hstop        : integer := image_hstart + image_Width;
+	variable image_vstart       : integer := 100;
+	variable image_vstop        : integer := 100 + image_Height;
 	variable image_pixel_col    : integer := 0;
 	variable image_pixel_row    : integer := 0;
 	variable image_pixel_number : integer := 0;
 	variable mem_Address        : unsigned(addressSize downto 0) := (others=>'0');
-	variable bgMem_Address        : unsigned(bgAddressSize downto 0) := (others=>'0');
 --	variable imgOffset          : integer := 4;
-	variable count: integer :=0;
 	begin
 		if rising_edge(sync2_clk) then
 			-- Always increment the horizontal position counter with each active clock pulse
 			hposition <= hposition + 1;
-			if count >= 1000000 then
-				--if moveright = '1' then
-					--bg_hstart := bg_hstart + 1;
-					--bg_hstop  := bg_hstop+1;
-					--count :=0;
-				--else
-					bg_hstart := bg_hstart - 1;
-					bg_hstop  := bg_hstop -  1;
-					count :=0;
-				--end if;
-			else
-				count := count+1;
-			end if;
-			if  bg_hstart <= (hfp+hsp+hbp) then
-				bg_hstart := hend - bg_width;
-			end if;
-			if  bg_hstop <= (hfp+hsp+hbp+bg_width) then
-				bg_hstop := hend;
-			end if;
 			
-		---	if  bg_hstart <= 0 then
-	--			bg_hstart := (hfp+hsp+hbp+hva);
-		--	end if;
-		--	if  bg_hstop <= 0 then
-		--		bg_hstop := (hfp+hsp+hbp+hva);
-		--	end if;
 			-- When horizontal position counter gets to the last pixel in a row, go back
 			-- to zero and increment the vertical counter (i.e. go to start of next line)
 			if hposition >= (hfp+hsp+hbp+hva) then
@@ -160,6 +123,7 @@ begin
 			
 			
 			
+			
 			-- Now to put things up on the display
 			-- Where do we want to put things?
 			-- Let's put the image in our memory in the centre of the screen starting
@@ -167,33 +131,21 @@ begin
 			-- displayed and then tell it what memory address to read from in order to 
 			-- display the contents of the memory onto the display.
 			-- The central pixel of the visible area is 
-			if ((hposition >= bg_hstart and hposition <= bg_hstop) and (vposition >= bg_vstart and vposition <= bg_vstop)) then
-				image_pixel_col := hposition - bg_hstart;
-				image_pixel_row := vposition - bg_vstart;
-				image_pixel_number := image_pixel_col + image_pixel_row*bg_width;
-				bgMem_Address  := to_unsigned(image_pixel_number, bgMem_Address'length);
-				bg_address <= std_logic_vector(bgMem_Address);
-				r <= bg_data(11 downto 8);
-				g <= bg_data(7 downto 4);
-				b <= bg_data(3 downto 0);
-				-- r <= x"F";
-				-- g <= x"F";
-				-- b <= x"F";
+			if ((hposition >= image_hstart and hposition <= image_hstop) and (vposition >= image_vstart and vposition <= image_vstop)) then
+				image_pixel_col := hposition - image_hstart;
+				image_pixel_row := vposition - image_vstart;
+				image_pixel_number := image_pixel_col + image_pixel_row*image_Width;
+				mem_Address  := to_unsigned(image_pixel_number, mem_Address'length);
+				data_address <= std_logic_vector(mem_Address);
+				r <= raw_data(11 downto 8);
+				g <= raw_data(7 downto 4);
+				b <= raw_data(3 downto 0);
 			else
-			   r <= x"0";
-		      g <= x"0";
-		      b <= x"0";
+			   r <= x"2";
+		      g <= x"2";
+		      b <= x"2";
 			end if;
-			if ((vposition >= bg_vstart+9 and vposition < bg_vstart+11) and (hposition >= hfp+hsp+hbp and hposition <= hend )) then
-				r <= x"F";
-				g <= x"F";
-				b <= x"F";
-			end if;
-			
 		end if;
 	end process;
 
-	
-	----- for bg line
-	
 end architecture display;
