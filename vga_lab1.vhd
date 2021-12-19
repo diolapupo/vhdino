@@ -84,6 +84,7 @@ begin
 	
 	process(sync2_clk)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
+	variable hstart 				 : integer := hfp + hsp + hbp;
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
 	variable vbottom				 : integer := vfp + vsp + vbp + (vva);
 	variable hend               : integer := hfp + hsp + hbp + (hva);
@@ -94,8 +95,13 @@ begin
 	variable image_pixel_col    : integer := 0;
 	variable image_pixel_row    : integer := 0;
 	variable image_pixel_number : integer := 0;
+	variable obstacle_width		 : integer := 30;
+	variable obstacle_hstart	 : integer := hend - obstacle_width;
+	variable obstacle_hstop     : integer := hend; 	
 	variable mem_Address        : unsigned(addressSize downto 0) := (others=>'0');
-	variable bgMem_Address        : unsigned(bgAddressSize downto 0) := (others=>'0');
+	variable bgMem_Address      : unsigned(bgAddressSize downto 0) := (others=>'0');
+ 
+	
 --	variable imgOffset          : integer := 4;
 	variable count: integer :=0;
 	begin
@@ -108,19 +114,33 @@ begin
 					--bg_hstop  := bg_hstop+1;
 					--count :=0;
 				--else
+					obstacle_hstart := obstacle_hstart -2;
+					obstacle_hstop := obstacle_hstop -2;
 					bg_hstart := bg_hstart - 1;
 					bg_hstop  := bg_hstop -  1;
+					
 					count :=0;
 				--end if;
 			else
 				count := count+1;
 			end if;
+			
+			---- restating the background loop
 			if  bg_hstart <= (hfp+hsp+hbp) then
 				bg_hstart := hend - bg_width;
 			end if;
 			if  bg_hstop <= (hfp+hsp+hbp+bg_width) then
 				bg_hstop := hend;
 			end if;
+			
+			
+			if  obstacle_hstart <= (hfp+hsp+hbp) then
+				obstacle_hstart := hend - obstacle_width;
+			end if;
+			if  obstacle_hstop <= (hfp+hsp+hbp+obstacle_width) then
+				obstacle_hstop := hend;
+			end if;
+			
 			
 		---	if  bg_hstart <= 0 then
 	--			bg_hstart := (hfp+hsp+hbp+hva);
@@ -184,16 +204,36 @@ begin
 		      g <= x"0";
 		      b <= x"0";
 			end if;
-			if ((vposition >= bg_vstart+9 and vposition < bg_vstart+11) and (hposition >= hfp+hsp+hbp and hposition <= hend )) then
+	----- for bg line----------------------------------------------------------------------			
+			if ((vposition >= bg_vstart+9 and vposition < bg_vstart+11) and (hposition >=hfp+hsp+hbp  and hposition <= hend )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";
 			end if;
 			
 		end if;
+		
+		--- for obstacles------------------
+		
+			if((vposition >= bg_vstart-120 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";
+			end if;
+		   if((vposition >= bg_vstart-80 and vposition <= vbottom) and (hposition >= bg_hstart+500 and hposition <= bg_hstart+560 )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";
+			end if;
+			if((vposition >= bg_vstart-40 and vposition <= vbottom) and (hposition >= bg_hstart+750 and hposition <= bg_hstart+840 )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";
+			end if;
+			
 	end process;
 
 	
-	----- for bg line
+
 	
 end architecture display;
