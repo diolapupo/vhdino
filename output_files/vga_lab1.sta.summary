@@ -3,11 +3,19 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 1.747
+Slack : 1.217
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.402
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 5.891
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 3.598
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
@@ -19,11 +27,19 @@ Slack : 9.820
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 2.839
+Slack : 2.255
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.323
+Slack : 0.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 6.739
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 3.293
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
@@ -35,11 +51,19 @@ Slack : 9.830
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 9.698
+Slack : 9.347
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
-Slack : 0.203
+Slack : 0.209
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 11.409
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 1.525
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'disp_clk|altpll_component|auto_generated|pll1|clk[1]'

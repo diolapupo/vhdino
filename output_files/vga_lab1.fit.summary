@@ -1,14 +1,14 @@
-Fitter Status : Successful - Sat Dec 18 01:06:39 2021
+Fitter Status : Successful - Sun Jan 02 18:32:38 2022
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : vga_lab1
 Top-level Entity Name : vga_lab1
 Family : MAX 10
 Device : 10M50DAF484C7G
 Timing Models : Final
-Total logic elements : 478 / 49,760 ( < 1 % )
-    Total combinational functions : 458 / 49,760 ( < 1 % )
-    Dedicated logic registers : 191 / 49,760 ( < 1 % )
-Total registers : 191
+Total logic elements : 963 / 49,760 ( 2 % )
+    Total combinational functions : 948 / 49,760 ( 2 % )
+    Dedicated logic registers : 251 / 49,760 ( < 1 % )
+Total registers : 251
 Total pins : 18 / 360 ( 5 % )
 Total virtual pins : 0
 Total memory bits : 393,216 / 1,677,312 ( 23 % )

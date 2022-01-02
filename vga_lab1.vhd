@@ -218,8 +218,7 @@ begin
 			if((vposition >= bg_vstart-120 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
-				b <= x"F";
-			end if;
+				b <= x"F";			end if;
 		   if((vposition >= bg_vstart-80 and vposition <= vbottom) and (hposition >= bg_hstart+500 and hposition <= bg_hstart+560 )) then
 				r <= x"F";
 				g <= x"F";
