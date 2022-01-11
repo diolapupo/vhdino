@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Sun Jan 02 18:32:09 2022
+Analysis & Synthesis Status : Successful - Tue Jan 11 21:08:19 2022
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : vga_lab1
 Top-level Entity Name : vga_lab1
 Family : MAX 10
-Total logic elements : 951
-    Total combinational functions : 947
-    Dedicated logic registers : 251
-Total registers : 251
+Total logic elements : 717
+    Total combinational functions : 713
+    Dedicated logic registers : 253
+Total registers : 253
 Total pins : 18
 Total virtual pins : 0
 Total memory bits : 393,216

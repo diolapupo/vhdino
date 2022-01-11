@@ -103,7 +103,9 @@ begin
  
 	
 --	variable imgOffset          : integer := 4;
-	variable count: integer :=0;
+	variable count: integer   :=0;
+	variable o_count: integer :=0;
+	variable speed: integer   :=3;
 	begin
 		if rising_edge(sync2_clk) then
 			-- Always increment the horizontal position counter with each active clock pulse
@@ -114,8 +116,8 @@ begin
 					--bg_hstop  := bg_hstop+1;
 					--count :=0;
 				--else
-					obstacle_hstart := obstacle_hstart -2;
-					obstacle_hstop := obstacle_hstop -2;
+					obstacle_hstart := obstacle_hstart -speed;
+					obstacle_hstop := obstacle_hstop -speed;
 					bg_hstart := bg_hstart - 1;
 					bg_hstop  := bg_hstop -  1;
 					
@@ -214,21 +216,16 @@ begin
 		end if;
 		
 		--- for obstacles------------------
+		if obstacle_hstart = 0 then
+		
+		end if
 		
 			if((vposition >= bg_vstart-120 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
-				b <= x"F";			end if;
-		   if((vposition >= bg_vstart-80 and vposition <= vbottom) and (hposition >= bg_hstart+500 and hposition <= bg_hstart+560 )) then
-				r <= x"F";
-				g <= x"F";
-				b <= x"F";
+				b <= x"F";			
 			end if;
-			if((vposition >= bg_vstart-40 and vposition <= vbottom) and (hposition >= bg_hstart+750 and hposition <= bg_hstart+840 )) then
-				r <= x"F";
-				g <= x"F";
-				b <= x"F";
-			end if;
+	
 			
 	end process;
 

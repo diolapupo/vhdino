@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vga_lab1
-Sun Jan 02 18:32:09 2022
+Tue Jan 11 21:08:19 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -58,15 +58,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Jan 02 18:32:09 2022       ;
+; Analysis & Synthesis Status        ; Successful - Tue Jan 11 21:08:19 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; vga_lab1                                    ;
 ; Top-level Entity Name              ; vga_lab1                                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 951                                         ;
-;     Total combinational functions  ; 947                                         ;
-;     Dedicated logic registers      ; 251                                         ;
-; Total registers                    ; 251                                         ;
+; Total logic elements               ; 717                                         ;
+;     Total combinational functions  ; 713                                         ;
+;     Dedicated logic registers      ; 253                                         ;
+; Total registers                    ; 253                                         ;
 ; Total pins                         ; 18                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 393,216                                     ;
@@ -219,20 +219,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                     ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 951                                                                                       ;
+; Estimated Total logic elements              ; 717                                                                                       ;
 ;                                             ;                                                                                           ;
-; Total combinational functions               ; 947                                                                                       ;
+; Total combinational functions               ; 713                                                                                       ;
 ; Logic element usage by number of LUT inputs ;                                                                                           ;
-;     -- 4 input functions                    ; 291                                                                                       ;
-;     -- 3 input functions                    ; 288                                                                                       ;
-;     -- <=2 input functions                  ; 368                                                                                       ;
+;     -- 4 input functions                    ; 298                                                                                       ;
+;     -- 3 input functions                    ; 171                                                                                       ;
+;     -- <=2 input functions                  ; 244                                                                                       ;
 ;                                             ;                                                                                           ;
 ; Logic elements by mode                      ;                                                                                           ;
-;     -- normal mode                          ; 354                                                                                       ;
-;     -- arithmetic mode                      ; 593                                                                                       ;
+;     -- normal mode                          ; 352                                                                                       ;
+;     -- arithmetic mode                      ; 361                                                                                       ;
 ;                                             ;                                                                                           ;
-; Total registers                             ; 251                                                                                       ;
-;     -- Dedicated logic registers            ; 251                                                                                       ;
+; Total registers                             ; 253                                                                                       ;
+;     -- Dedicated logic registers            ; 253                                                                                       ;
 ;     -- I/O registers                        ; 0                                                                                         ;
 ;                                             ;                                                                                           ;
 ; I/O pins                                    ; 18                                                                                        ;
@@ -244,9 +244,9 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                                         ;
 ;                                             ;                                                                                           ;
 ; Maximum fan-out node                        ; sync_clk:disp_clk|altpll:altpll_component|sync_clk_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 300                                                                                       ;
-; Total fan-out                               ; 4159                                                                                      ;
-; Average fan-out                             ; 3.24                                                                                      ;
+; Maximum fan-out                             ; 302                                                                                       ;
+; Total fan-out                               ; 3596                                                                                      ;
+; Average fan-out                             ; 3.42                                                                                      ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
 
 
@@ -255,7 +255,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                            ; Entity Name     ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |vga_lab1                                 ; 947 (919)           ; 251 (247)                 ; 393216      ; 0          ; 0            ; 0       ; 0         ; 18   ; 0            ; 0          ; |vga_lab1                                                                                                      ; vga_lab1        ; work         ;
+; |vga_lab1                                 ; 713 (685)           ; 253 (249)                 ; 393216      ; 0          ; 0            ; 0       ; 0         ; 18   ; 0            ; 0          ; |vga_lab1                                                                                                      ; vga_lab1        ; work         ;
 ;    |bg_spry:bgread|                       ; 28 (0)              ; 4 (0)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread                                                                                       ; bg_spry         ; work         ;
 ;       |altsyncram:altsyncram_component|   ; 28 (0)              ; 4 (0)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component                                                       ; altsyncram      ; work         ;
 ;          |altsyncram_l9r3:auto_generated| ; 28 (0)              ; 4 (4)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component|altsyncram_l9r3:auto_generated                        ; altsyncram_l9r3 ; work         ;
@@ -293,13 +293,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------+----------------------------------------+
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
-; obstacle_hstop[0]                     ; Stuck at GND due to stuck port data_in ;
-; obstacle_hstart[0]                    ; Stuck at GND due to stuck port data_in ;
 ; bg_hstart[31]                         ; Stuck at GND due to stuck port data_in ;
 ; bg_hstop[31]                          ; Stuck at GND due to stuck port data_in ;
 ; obstacle_hstart[31]                   ; Stuck at GND due to stuck port data_in ;
 ; obstacle_hstop[31]                    ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 6 ;                                        ;
+; Total Number of Removed Registers = 4 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
 
@@ -308,12 +306,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 251   ;
+; Total registers                              ; 253   ;
 ; Number of registers using Synchronous Clear  ; 96    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 12    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 51    ;
+; Number of registers using Clock Enable       ; 47    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -339,14 +337,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------+---------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |vga_lab1|obstacle_hstop[4] ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |vga_lab1|r[1]~reg0         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |vga_lab1|r[1]~reg0        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------+
@@ -950,27 +947,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 18                          ;
-; cycloneiii_ff         ; 251                         ;
+; cycloneiii_ff         ; 253                         ;
 ;     CLR               ; 12                          ;
-;     ENA               ; 19                          ;
+;     ENA               ; 15                          ;
 ;     ENA SCLR          ; 32                          ;
 ;     SCLR              ; 64                          ;
-;     plain             ; 124                         ;
-; cycloneiii_lcell_comb ; 959                         ;
-;     arith             ; 593                         ;
-;         2 data inputs ; 330                         ;
-;         3 data inputs ; 263                         ;
-;     normal            ; 366                         ;
-;         0 data inputs ; 8                           ;
+;     plain             ; 130                         ;
+; cycloneiii_lcell_comb ; 725                         ;
+;     arith             ; 361                         ;
+;         2 data inputs ; 222                         ;
+;         3 data inputs ; 139                         ;
+;     normal            ; 364                         ;
+;         0 data inputs ; 4                           ;
 ;         1 data inputs ; 16                          ;
-;         2 data inputs ; 26                          ;
-;         3 data inputs ; 25                          ;
-;         4 data inputs ; 291                         ;
+;         2 data inputs ; 14                          ;
+;         3 data inputs ; 32                          ;
+;         4 data inputs ; 298                         ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 48                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 18.00                       ;
-; Average LUT depth     ; 8.64                        ;
+; Max LUT depth         ; 19.00                       ;
+; Average LUT depth     ; 9.47                        ;
 +-----------------------+-----------------------------+
 
 
@@ -979,7 +976,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:03     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -989,7 +986,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Sun Jan 02 18:31:34 2022
+    Info: Processing started: Tue Jan 11 21:08:02 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_lab1 -c vga_lab1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -1041,12 +1038,9 @@ Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(90): signal "hva
 Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(93): used initial value expression for variable "bg_vstart" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
 Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(94): used initial value expression for variable "bg_vstop" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
 Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(98): used initial value expression for variable "obstacle_width" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 98
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(218): signal "vposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 218
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(218): signal "hposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 218
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(222): signal "vposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 222
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(222): signal "hposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 222
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(227): signal "vposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 227
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(227): signal "hposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 227
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(107): used initial value expression for variable "speed" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 107
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(219): signal "vposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 219
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(219): signal "hposition" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 219
 Info (12128): Elaborating entity "sync_clk" for hierarchy "sync_clk:disp_clk" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 73
 Info (12128): Elaborating entity "altpll" for hierarchy "sync_clk:disp_clk|altpll:altpll_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 142
 Info (12130): Elaborated megafunction instantiation "sync_clk:disp_clk|altpll:altpll_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 142
@@ -1336,7 +1330,7 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a93" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2182
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a94" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2205
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a95" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2228
-Info (13000): Registers with preset signals will power-up high File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 108
+Info (13000): Registers with preset signals will power-up high File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 109
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -1347,16 +1341,16 @@ Warning (21074): Design contains 3 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "chooseRes" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 12
     Warning (15610): No output dependent on input pin "moveleft" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 13
     Warning (15610): No output dependent on input pin "moveright" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 14
-Info (21057): Implemented 1080 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 846 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 14 output pins
-    Info (21061): Implemented 1013 logic cells
+    Info (21061): Implemented 779 logic cells
     Info (21064): Implemented 48 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 143 warnings
-    Info: Peak virtual memory: 4822 megabytes
-    Info: Processing ended: Sun Jan 02 18:32:09 2022
-    Info: Elapsed time: 00:00:35
-    Info: Total CPU time (on all processors): 00:00:32
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 140 warnings
+    Info: Peak virtual memory: 4820 megabytes
+    Info: Processing ended: Tue Jan 11 21:08:19 2022
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:33
 
 
