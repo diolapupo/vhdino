@@ -80,13 +80,19 @@ set_location_assignment PIN_P11 -to clk50MHz
 # SW
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to chooseRes
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to moveUp
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to sw
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to moveDown
 set_location_assignment PIN_C10 -to chooseRes
-set_location_assignment PIN_C11 -to moveUp
+set_location_assignment PIN_C11 -to sw
 set_location_assignment PIN_D12 -to moveDown
 
-
+###################
+KEY
+##################
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to moveUp
+set_instance_assignment -name IO_STANDARD "3.3 V SCHMITT TRIGGER" -to KEY[1]
+set_location_assignment PIN_B8 -to moveUp
+set_location_assignment PIN_A7 -to KEY[1]
 #============================================================
 # VGA
 #============================================================
