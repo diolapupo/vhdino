@@ -82,7 +82,7 @@ begin
 --	bg_vstart <= bg_vstart-20 when (moveUp = '1') else bg_vstart;
 --	bg_vstart <= bg_vstop-20 when (moveUp = '1') else bg_vstop;
 	
-	process(sync2_clk)
+	process(sync2_clk,moveUp)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
 	variable hstart 				 : integer := hfp + hsp + hbp;
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
@@ -100,16 +100,23 @@ begin
 	variable obstacle_hstop     : integer := hend; 	
 	variable mem_Address        : unsigned(addressSize downto 0) := (others=>'0');
 	variable bgMem_Address      : unsigned(bgAddressSize downto 0) := (others=>'0');
- 
+	variable object_vstart		 : integer := bg_vstart - 30;
+	variable object_height		 : integer := 75;
+	variable object_vstop		 : integer := object_vstart + object_height;
 	
 --	variable imgOffset          : integer := 4;
 	variable count: integer   :=0;
 	variable o_count: integer :=0;
 	variable speed: integer   :=3;
 	begin
+		if rising_edge(moveUp) then
+			object_vstart := object_vstart - 30;
+		end if;
+	
 		if rising_edge(sync2_clk) then
 			-- Always increment the horizontal position counter with each active clock pulse
 			hposition <= hposition + 1;
+			
 			if count >= 1000000 then
 				--if moveright = '1' then
 					--bg_hstart := bg_hstart + 1;
@@ -152,6 +159,7 @@ begin
 		--	end if;
 			-- When horizontal position counter gets to the last pixel in a row, go back
 			-- to zero and increment the vertical counter (i.e. go to start of next line)
+			
 			if hposition >= (hfp+hsp+hbp+hva) then
 				hposition <= 0;
 				-- when vertical position counter gets to the end of rows, go back to the
@@ -244,7 +252,7 @@ begin
 		
 		------- Player Object--------------
 		
-		if((vposition >= bg_vstart-30 and vposition <= vbottom) and (hposition >= hstart+30 and hposition < hstart+70 )) then
+		if((vposition >= object_vstart and vposition <= object_vstop) and (hposition >= hstart+30 and hposition < hstart+70 )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";			
