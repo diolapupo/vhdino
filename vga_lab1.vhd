@@ -10,8 +10,8 @@ generic(bg_width        : INTEGER := 512; -- Width of bac
         bgAddressSize   : integer := 14); 
 port(clk50MHz  : in std_logic;
      chooseRes : in std_logic;
-	  moveleft : in std_logic;
-	  moveright : in std_logic;
+	  moveUp : in std_logic;
+	  moveDown : in std_logic;
      r         : out std_logic_vector(3 downto 0);
      g         : out std_logic_vector(3 downto 0);
      b         : out std_logic_vector(3 downto 0);
@@ -212,20 +212,46 @@ begin
 				g <= x"F";
 				b <= x"F";
 			end if;
-			
+		--- for obstacles------------------
+		if obstacle_hstart <= (hfp+hsp+hbp+1) and o_count < 2 then
+			o_count := o_count + 1;
+		elsif obstacle_hstart <= (hfp+hsp+hbp+1) and o_count >= 2 then
+			o_count := 0;
 		end if;
 		
-		--- for obstacles------------------
-		if obstacle_hstart = 0 then
-		
-		end if
-		
+		if o_count = 0 then
+			obstacle_width := 30;
 			if((vposition >= bg_vstart-120 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";			
 			end if;
-	
+		elsif o_count = 1 then
+			obstacle_width := 70;
+			if((vposition >= bg_vstart-90 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";			
+			end if;
+		elsif o_count = 2 then
+			obstacle_width := 90;
+			if((vposition >= bg_vstart-50 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";			
+			end if;
+		end if;	
+		
+		------- Player Object--------------
+		
+		if((vposition >= bg_vstart-30 and vposition <= vbottom) and (hposition >= hstart+30 and hposition < hstart+70 )) then
+				r <= x"F";
+				g <= x"F";
+				b <= x"F";			
+			end if;
+		
+		end if;
+		
 			
 	end process;
 
