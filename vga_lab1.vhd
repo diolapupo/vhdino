@@ -16,6 +16,8 @@ port(clk50MHz  : in std_logic;
      g         : out std_logic_vector(3 downto 0);
      b         : out std_logic_vector(3 downto 0);
      hsync     : out std_logic;
+	  HEX0      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	  HEX1      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
      vsync     : out std_logic);
 end entity vga_lab1;
 
@@ -50,15 +52,15 @@ architecture display of vga_lab1 is
 	-- Signals to hold the present memory address to be read and the data read
 	signal data_address : std_logic_vector(addressSize downto 0) := (others=>'0');
 	signal bg_address   : std_logic_vector(bgAddressSize downto 0) := (others=>'0');
---	signal data_read    : std_logic_vector(dataSize downto 0)    := (others=>'0');
 	signal raw_data     : std_logic_vector(dataSize downto 0)    := (others=>'0');
 	signal bg_data     : std_logic_vector(dataSize downto 0)    := (others=>'0');
---	signal hcentre            : integer := hfp + hsp + hbp + (hva/2);
---	signal vcentre            : integer := vfp + vsp + vbp + (vva/2);
---	signal bg_hstart       : integer := hcentre      - bg_width/2;
---	signal bg_hstop        : integer := bg_hstart + bg_width;
---	signal bg_vstart       : integer := vcentre    - bg_Height/2;
---	signal bg_vstop        : integer := vcentre    + bg_Height/2;
+	signal tsocre    : std_logic_vector(3 downto 0)    := "1000";
+	signal score: unsigned(3 downto 0) :="0000";
+component dizzy IS
+	PORT( score: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		  diz0: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+		  diz1: OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
+END component;
 begin
 	sync2_clk<= clk65;
 	hfp      <= hfp768p;
@@ -73,6 +75,8 @@ begin
 	disp_clk: work.sync_clk port map(inclk0 => clk50MHz,
                                     c0     => clk25,
                                     c1     => clk65);
+	scoredisp: dizzy port map(std_logic_vector(score), HEX0,HEX1);
+	
 	imRead: work.image_mem port map(address => data_address,
                                   clock    => sync2_clk,
                                   q        => raw_data);
@@ -82,7 +86,7 @@ begin
 --	bg_vstart <= bg_vstart-20 when (moveUp = '1') else bg_vstart;
 --	bg_vstart <= bg_vstop-20 when (moveUp = '1') else bg_vstop;
 	
-	process(sync2_clk,moveUp)
+	process(sync2_clk,moveUp,moveDown)
 	variable hcentre            : integer := hfp + hsp + hbp + (hva/2);
 	variable hstart 				 : integer := hfp + hsp + hbp;
 	variable vcentre            : integer := vfp + vsp + vbp + (vva/2);
@@ -98,40 +102,46 @@ begin
 	variable obstacle_width		 : integer := 30;
 	variable obstacle_hstart	 : integer := hend - obstacle_width;
 	variable obstacle_hstop     : integer := hend; 	
+	variable obstacle_vstart    : integer := bg_vstart-120; 	
 	variable mem_Address        : unsigned(addressSize downto 0) := (others=>'0');
 	variable bgMem_Address      : unsigned(bgAddressSize downto 0) := (others=>'0');
-	variable object_vstart		 : integer := bg_vstart - 30;
+	variable object_vstart		 : integer := vbottom-180;
 	variable object_height		 : integer := 75;
 	variable object_vstop		 : integer := object_vstart + object_height;
 	
 --	variable imgOffset          : integer := 4;
 	variable count: integer   :=0;
 	variable o_count: integer :=0;
-	variable speed: integer   :=3;
+	variable speed: integer   :=1;
+	variable count_2: integer :=0;
+	
 	begin
-		if rising_edge(moveUp) then
-			object_vstart := object_vstart - 30;
-		end if;
+	
+--	if rising_edge(moveDown) then
+--			object_vstart := object_vstart-70;	
+--	end if;
 	
 		if rising_edge(sync2_clk) then
 			-- Always increment the horizontal position counter with each active clock pulse
 			hposition <= hposition + 1;
 			
 			if count >= 1000000 then
-				--if moveright = '1' then
-					--bg_hstart := bg_hstart + 1;
-					--bg_hstop  := bg_hstop+1;
-					--count :=0;
-				--else
 					obstacle_hstart := obstacle_hstart -speed;
 					obstacle_hstop := obstacle_hstop -speed;
 					bg_hstart := bg_hstart - 1;
 					bg_hstop  := bg_hstop -  1;
-					
 					count :=0;
-				--end if;
 			else
 				count := count+1;
+			end if;
+			
+			if count_2 >= 500000000 then
+					speed := speed + 1;
+					count_2 :=0;
+					score <= score +1;
+				
+			else
+				count_2 := count_2+1;
 			end if;
 			
 			---- restating the background loop
@@ -190,13 +200,7 @@ begin
 			
 			
 			
-			-- Now to put things up on the display
-			-- Where do we want to put things?
-			-- Let's put the image in our memory in the centre of the screen starting
-			-- from the 100th row. We first determine the bounds in which the image will be
-			-- displayed and then tell it what memory address to read from in order to 
-			-- display the contents of the memory onto the display.
-			-- The central pixel of the visible area is 
+			
 			if ((hposition >= bg_hstart and hposition <= bg_hstop) and (vposition >= bg_vstart and vposition <= bg_vstop)) then
 				image_pixel_col := hposition - bg_hstart;
 				image_pixel_row := vposition - bg_vstart;
@@ -229,26 +233,31 @@ begin
 		
 		if o_count = 0 then
 			obstacle_width := 30;
-			if((vposition >= bg_vstart-120 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+			obstacle_vstart := bg_vstart-120;
+			if((vposition >= obstacle_vstart and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";			
 			end if;
 		elsif o_count = 1 then
 			obstacle_width := 70;
-			if((vposition >= bg_vstart-90 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+			obstacle_vstart := bg_vstart-90;
+			if((vposition >= obstacle_vstart and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";			
 			end if;
 		elsif o_count = 2 then
 			obstacle_width := 90;
-			if((vposition >= bg_vstart-50 and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
+			obstacle_vstart := bg_vstart-50;
+			if((vposition >= obstacle_vstart and vposition <= vbottom) and (hposition >= obstacle_hstart and hposition < obstacle_hstop )) then
 				r <= x"F";
 				g <= x"F";
 				b <= x"F";			
 			end if;
 		end if;	
+		
+--			object_vstart <= object_vstart-20 when (moveUp'event and moveUp = '1') else object_vstart;
 		
 		------- Player Object--------------
 		
@@ -257,10 +266,31 @@ begin
 				g <= x"F";
 				b <= x"F";			
 			end if;
-		
+			
+	---------- Collision Detection---------------------		
+		if((object_vstop >= obstacle_vstart) and (obstacle_hstart < hstart+70)) then
+		  score <= "0000";
+		  speed := 1;
+		  obstacle_hstart := hend - obstacle_width;
+	     obstacle_hstop  := hend;
+--				if((vposition >= object_vstart and vposition <= object_vstop) and (hposition >= hstart+30 and hposition < hstart+70 )) then
+--				r <= x"F";
+--				g <= x"F";
+--				b <= x"F";			
+--			end if;
 		end if;
 		
+		end if;
 			
+	if rising_edge(moveUp) then
+			object_vstart := object_vstart-170;	
+			
+			if  object_vstart <= vbottom-360 then
+				object_vstart := vbottom-75;
+			end if;
+		
+	end if;
+	
 	end process;
 
 	

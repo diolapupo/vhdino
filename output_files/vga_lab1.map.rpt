@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vga_lab1
-Thu Jan 13 22:51:33 2022
+Sun Jan 16 15:12:54 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -24,15 +24,18 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  16. Source assignments for bg_spry:bgread|altsyncram:altsyncram_component|altsyncram_l9r3:auto_generated
  17. Parameter Settings for User Entity Instance: Top-level Entity: |vga_lab1
  18. Parameter Settings for User Entity Instance: sync_clk:disp_clk|altpll:altpll_component
- 19. Parameter Settings for User Entity Instance: image_mem:imRead|altsyncram:altsyncram_component
- 20. Parameter Settings for User Entity Instance: bg_spry:bgread|altsyncram:altsyncram_component
- 21. altpll Parameter Settings by Entity Instance
- 22. altsyncram Parameter Settings by Entity Instance
- 23. Port Connectivity Checks: "image_mem:imRead"
- 24. Port Connectivity Checks: "sync_clk:disp_clk"
- 25. Post-Synthesis Netlist Statistics for Top Partition
- 26. Elapsed Time Per Partition
- 27. Analysis & Synthesis Messages
+ 19. Parameter Settings for User Entity Instance: dizzy:scoredisp|char_7seg:H0
+ 20. Parameter Settings for User Entity Instance: dizzy:scoredisp|char_7seg:H1
+ 21. Parameter Settings for User Entity Instance: image_mem:imRead|altsyncram:altsyncram_component
+ 22. Parameter Settings for User Entity Instance: bg_spry:bgread|altsyncram:altsyncram_component
+ 23. altpll Parameter Settings by Entity Instance
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "image_mem:imRead"
+ 26. Port Connectivity Checks: "dizzy:scoredisp|char_7seg:H1"
+ 27. Port Connectivity Checks: "sync_clk:disp_clk"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
 
 
 
@@ -59,16 +62,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jan 13 22:51:33 2022       ;
+; Analysis & Synthesis Status        ; Successful - Sun Jan 16 15:12:54 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; vga_lab1                                    ;
 ; Top-level Entity Name              ; vga_lab1                                    ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 988                                         ;
-;     Total combinational functions  ; 984                                         ;
-;     Dedicated logic registers      ; 319                                         ;
-; Total registers                    ; 319                                         ;
-; Total pins                         ; 18                                          ;
+; Total logic elements               ; 1,240                                       ;
+;     Total combinational functions  ; 1,236                                       ;
+;     Dedicated logic registers      ; 388                                         ;
+; Total registers                    ; 388                                         ;
+; Total pins                         ; 32                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 393,216                                     ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -177,7 +180,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -190,6 +193,7 @@ https://fpgasoftware.intel.com/eula.
 ; sync_clk.vhd                                                                                            ; yes             ; User Wizard-Generated File             ; C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd           ;         ;
 ; vga_lab1.vhd                                                                                            ; yes             ; User VHDL File                         ; C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd           ;         ;
 ; bg_spry.vhd                                                                                             ; yes             ; User Wizard-Generated File             ; C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd            ;         ;
+; dizzy.vhd                                                                                               ; yes             ; User VHDL File                         ; C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd              ;         ;
 ; altpll.tdf                                                                                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf                                                    ;         ;
 ; aglobal201.inc                                                                                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc                                                ;         ;
 ; stratix_pll.inc                                                                                         ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratix_pll.inc                                               ;         ;
@@ -220,23 +224,23 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                     ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 988                                                                                       ;
+; Estimated Total logic elements              ; 1,240                                                                                     ;
 ;                                             ;                                                                                           ;
-; Total combinational functions               ; 984                                                                                       ;
+; Total combinational functions               ; 1236                                                                                      ;
 ; Logic element usage by number of LUT inputs ;                                                                                           ;
-;     -- 4 input functions                    ; 378                                                                                       ;
-;     -- 3 input functions                    ; 261                                                                                       ;
-;     -- <=2 input functions                  ; 345                                                                                       ;
+;     -- 4 input functions                    ; 442                                                                                       ;
+;     -- 3 input functions                    ; 357                                                                                       ;
+;     -- <=2 input functions                  ; 437                                                                                       ;
 ;                                             ;                                                                                           ;
 ; Logic elements by mode                      ;                                                                                           ;
-;     -- normal mode                          ; 504                                                                                       ;
-;     -- arithmetic mode                      ; 480                                                                                       ;
+;     -- normal mode                          ; 692                                                                                       ;
+;     -- arithmetic mode                      ; 544                                                                                       ;
 ;                                             ;                                                                                           ;
-; Total registers                             ; 319                                                                                       ;
-;     -- Dedicated logic registers            ; 319                                                                                       ;
+; Total registers                             ; 388                                                                                       ;
+;     -- Dedicated logic registers            ; 388                                                                                       ;
 ;     -- I/O registers                        ; 0                                                                                         ;
 ;                                             ;                                                                                           ;
-; I/O pins                                    ; 18                                                                                        ;
+; I/O pins                                    ; 32                                                                                        ;
 ; Total memory bits                           ; 393216                                                                                    ;
 ;                                             ;                                                                                           ;
 ; Embedded Multiplier 9-bit elements          ; 0                                                                                         ;
@@ -245,9 +249,9 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                                         ;
 ;                                             ;                                                                                           ;
 ; Maximum fan-out node                        ; sync_clk:disp_clk|altpll:altpll_component|sync_clk_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 337                                                                                       ;
-; Total fan-out                               ; 4506                                                                                      ;
-; Average fan-out                             ; 3.25                                                                                      ;
+; Maximum fan-out                             ; 407                                                                                       ;
+; Total fan-out                               ; 5472                                                                                      ;
+; Average fan-out                             ; 3.15                                                                                      ;
 +---------------------------------------------+-------------------------------------------------------------------------------------------+
 
 
@@ -256,12 +260,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                            ; Entity Name     ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |vga_lab1                                 ; 984 (956)           ; 319 (315)                 ; 393216      ; 0          ; 0            ; 0       ; 0         ; 18   ; 0            ; 0          ; |vga_lab1                                                                                                      ; vga_lab1        ; work         ;
+; |vga_lab1                                 ; 1236 (1200)         ; 388 (384)                 ; 393216      ; 0          ; 0            ; 0       ; 0         ; 32   ; 0            ; 0          ; |vga_lab1                                                                                                      ; vga_lab1        ; work         ;
 ;    |bg_spry:bgread|                       ; 28 (0)              ; 4 (0)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread                                                                                       ; bg_spry         ; work         ;
 ;       |altsyncram:altsyncram_component|   ; 28 (0)              ; 4 (0)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component                                                       ; altsyncram      ; work         ;
 ;          |altsyncram_l9r3:auto_generated| ; 28 (0)              ; 4 (4)                     ; 393216      ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component|altsyncram_l9r3:auto_generated                        ; altsyncram_l9r3 ; work         ;
 ;             |decode_5j9:rden_decode|      ; 4 (4)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component|altsyncram_l9r3:auto_generated|decode_5j9:rden_decode ; decode_5j9      ; work         ;
 ;             |mux_73b:mux2|                ; 24 (24)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|bg_spry:bgread|altsyncram:altsyncram_component|altsyncram_l9r3:auto_generated|mux_73b:mux2           ; mux_73b         ; work         ;
+;    |dizzy:scoredisp|                      ; 8 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|dizzy:scoredisp                                                                                      ; dizzy           ; work         ;
+;       |char_7seg:H0|                      ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|dizzy:scoredisp|char_7seg:H0                                                                         ; char_7seg       ; work         ;
+;       |comparator9:COMP|                  ; 1 (1)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|dizzy:scoredisp|comparator9:COMP                                                                     ; comparator9     ; work         ;
 ;    |sync_clk:disp_clk|                    ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|sync_clk:disp_clk                                                                                    ; sync_clk        ; work         ;
 ;       |altpll:altpll_component|           ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|sync_clk:disp_clk|altpll:altpll_component                                                            ; altpll          ; work         ;
 ;          |sync_clk_altpll:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |vga_lab1|sync_clk:disp_clk|altpll:altpll_component|sync_clk_altpll:auto_generated                             ; sync_clk_altpll ; work         ;
@@ -294,26 +301,56 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+----------------------------------------+
 ; Register name                          ; Reason for Removal                     ;
 +----------------------------------------+----------------------------------------+
-; obstacle_width[0,5,7..30]              ; Merged with obstacle_width[31]         ;
-; obstacle_width[3]                      ; Merged with obstacle_width[4]          ;
-; obstacle_width[31]                     ; Stuck at GND due to stuck port data_in ;
-; obstacle_width[1]                      ; Stuck at VCC due to stuck port data_in ;
+; object_vstart[0]                       ; Stuck at VCC due to stuck port data_in ;
+; obstacle_vstart[31]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[31]                     ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[15]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[0]                      ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[13,14,23]              ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[5]                      ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[12,22,27]              ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[7]                      ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[11]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[8,9]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[10,21]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[10..13]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[8,20,26,29]            ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[14..17]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[19]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[18,19]                  ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[5]                     ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[20,21]                  ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[18,25]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[22..25]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[17]                    ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[26..29]                 ; Merged with obstacle_vstart[30]        ;
+; obstacle_vstart[16,24,28]              ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[30]                     ; Merged with obstacle_vstart[30]        ;
+; obstacle_width[1]                      ; Merged with obstacle_vstart[9]         ;
+; obstacle_vstart[0,7]                   ; Merged with obstacle_vstart[9]         ;
+; obstacle_vstart[3]                     ; Merged with obstacle_vstart[4]         ;
+; obstacle_width[6]                      ; Merged with obstacle_vstart[2]         ;
+; obstacle_vstart[1]                     ; Merged with obstacle_vstart[2]         ;
+; obstacle_width[4]                      ; Merged with obstacle_width[3]          ;
+; obstacle_vstart[30]                    ; Stuck at GND due to stuck port data_in ;
 ; obstacle_hstop[31]                     ; Stuck at GND due to stuck port data_in ;
+; object_vstart[31]                      ; Stuck at GND due to stuck port data_in ;
 ; bg_hstart[31]                          ; Stuck at GND due to stuck port data_in ;
 ; bg_hstop[31]                           ; Stuck at GND due to stuck port data_in ;
+; obstacle_vstart[9]                     ; Stuck at VCC due to stuck port data_in ;
 ; obstacle_hstart[31]                    ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 33 ;                                        ;
+; Total Number of Removed Registers = 65 ;                                        ;
 +----------------------------------------+----------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                             ;
-+--------------------+---------------------------+----------------------------------------+
-; Register name      ; Reason for Removal        ; Registers Removed due to This Register ;
-+--------------------+---------------------------+----------------------------------------+
-; obstacle_width[31] ; Stuck at GND              ; obstacle_width[1]                      ;
-;                    ; due to stuck port data_in ;                                        ;
-+--------------------+---------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                            ;
++------------------+---------------------------+-----------------------------------------+
+; Register name    ; Reason for Removal        ; Registers Removed due to This Register  ;
++------------------+---------------------------+-----------------------------------------+
+; object_vstart[0] ; Stuck at VCC              ; obstacle_hstop[31], obstacle_hstart[31] ;
+;                  ; due to stuck port data_in ;                                         ;
++------------------+---------------------------+-----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -321,12 +358,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 319   ;
-; Number of registers using Synchronous Clear  ; 96    ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Total registers                              ; 388   ;
+; Number of registers using Synchronous Clear  ; 128   ;
+; Number of registers using Synchronous Load   ; 6     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 49    ;
+; Number of registers using Clock Enable       ; 82    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -336,21 +373,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; obstacle_width[2]                      ; 2       ;
-; obstacle_width[4]                      ; 5       ;
-; Total number of inverted registers = 2 ;         ;
+; speed[0]                               ; 4       ;
+; obstacle_width[2]                      ; 3       ;
+; obstacle_width[3]                      ; 5       ;
+; Total number of inverted registers = 3 ;         ;
 +----------------------------------------+---------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
-; 5:1                ; 12 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |vga_lab1|r[2]~reg0         ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |vga_lab1|obstacle_width[2] ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |vga_lab1|o_count           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 35 bits   ; 70 LEs        ; 35 LEs               ; 35 LEs                 ; Yes        ; |vga_lab1|speed[29]        ;
+; 5:1                ; 12 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |vga_lab1|b[1]~reg0        ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |vga_lab1|o_count          ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |vga_lab1|obstacle_vstart  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------+
@@ -759,6 +798,44 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dizzy:scoredisp|char_7seg:H0 ;
++----------------+---------+------------------------------------------------+
+; Parameter Name ; Value   ; Type                                           ;
++----------------+---------+------------------------------------------------+
+; u              ; 0000001 ; Unsigned Binary                                ;
+; v              ; 1001111 ; Unsigned Binary                                ;
+; w              ; 0010010 ; Unsigned Binary                                ;
+; x              ; 0000110 ; Unsigned Binary                                ;
+; y              ; 1001100 ; Unsigned Binary                                ;
+; z              ; 0100100 ; Unsigned Binary                                ;
+; a              ; 0100000 ; Unsigned Binary                                ;
+; b              ; 0001110 ; Unsigned Binary                                ;
+; c              ; 0000000 ; Unsigned Binary                                ;
+; d              ; 0000100 ; Unsigned Binary                                ;
++----------------+---------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dizzy:scoredisp|char_7seg:H1 ;
++----------------+---------+------------------------------------------------+
+; Parameter Name ; Value   ; Type                                           ;
++----------------+---------+------------------------------------------------+
+; u              ; 0000001 ; Unsigned Binary                                ;
+; v              ; 1001111 ; Unsigned Binary                                ;
+; w              ; 0010010 ; Unsigned Binary                                ;
+; x              ; 0000110 ; Unsigned Binary                                ;
+; y              ; 1001100 ; Unsigned Binary                                ;
+; z              ; 0100100 ; Unsigned Binary                                ;
+; a              ; 0100000 ; Unsigned Binary                                ;
+; b              ; 0001110 ; Unsigned Binary                                ;
+; c              ; 0000000 ; Unsigned Binary                                ;
+; d              ; 0000100 ; Unsigned Binary                                ;
++----------------+---------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +-----------------------------------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: image_mem:imRead|altsyncram:altsyncram_component ;
 +------------------------------------+----------------------+-----------------------------------+
@@ -939,6 +1016,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
++----------------------------------------------------------+
+; Port Connectivity Checks: "dizzy:scoredisp|char_7seg:H1" ;
++---------+-------+----------+-----------------------------+
+; Port    ; Type  ; Severity ; Details                     ;
++---------+-------+----------+-----------------------------+
+; s[3..1] ; Input ; Info     ; Stuck at GND                ;
++---------+-------+----------+-----------------------------+
+
+
 +----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "sync_clk:disp_clk"                                                                  ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
@@ -953,27 +1039,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 18                          ;
-; cycloneiii_ff         ; 319                         ;
-;     ENA               ; 17                          ;
+; boundary_port         ; 32                          ;
+; cycloneiii_ff         ; 388                         ;
+;     ENA               ; 50                          ;
 ;     ENA SCLR          ; 32                          ;
-;     SCLR              ; 64                          ;
-;     plain             ; 206                         ;
-; cycloneiii_lcell_comb ; 984                         ;
-;     arith             ; 480                         ;
-;         2 data inputs ; 309                         ;
-;         3 data inputs ; 171                         ;
-;     normal            ; 504                         ;
-;         0 data inputs ; 4                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 24                          ;
-;         3 data inputs ; 90                          ;
-;         4 data inputs ; 378                         ;
+;     SCLR              ; 96                          ;
+;     SLD               ; 6                           ;
+;     plain             ; 204                         ;
+; cycloneiii_lcell_comb ; 1239                        ;
+;     arith             ; 544                         ;
+;         2 data inputs ; 314                         ;
+;         3 data inputs ; 230                         ;
+;     normal            ; 695                         ;
+;         0 data inputs ; 6                           ;
+;         1 data inputs ; 11                          ;
+;         2 data inputs ; 109                         ;
+;         3 data inputs ; 127                         ;
+;         4 data inputs ; 442                         ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 48                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 24.00                       ;
-; Average LUT depth     ; 12.41                       ;
+; Max LUT depth         ; 23.20                       ;
+; Average LUT depth     ; 12.51                       ;
 +-----------------------+-----------------------------+
 
 
@@ -982,7 +1069,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:06     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -992,7 +1079,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Thu Jan 13 22:50:56 2022
+    Info: Processing started: Sun Jan 16 15:12:31 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vga_lab1 -c vga_lab1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -1003,7 +1090,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file sync_cl
     Info (12022): Found design unit 1: sync_clk-SYN File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 53
     Info (12023): Found entity 1: sync_clk File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 43
 Info (12021): Found 2 design units, including 1 entities, in source file vga_lab1.vhd
-    Info (12022): Found design unit 1: vga_lab1-display File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 22
+    Info (12022): Found design unit 1: vga_lab1-display File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 24
     Info (12023): Found entity 1: vga_lab1 File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file bg_sprite.vhd
     Info (12022): Found design unit 1: bg_sprite-SYN File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_sprite.vhd Line: 53
@@ -1011,44 +1098,51 @@ Info (12021): Found 2 design units, including 1 entities, in source file bg_spri
 Info (12021): Found 2 design units, including 1 entities, in source file bg_spry.vhd
     Info (12022): Found design unit 1: bg_spry-SYN File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd Line: 53
     Info (12023): Found entity 1: bg_spry File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd Line: 43
+Info (12021): Found 8 design units, including 4 entities, in source file dizzy.vhd
+    Info (12022): Found design unit 1: dizzy-dizplay File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 10
+    Info (12022): Found design unit 2: char_7seg-Behavior File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 70
+    Info (12022): Found design unit 3: comparator9-Behavior File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 169
+    Info (12022): Found design unit 4: circA-Behavior File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 184
+    Info (12023): Found entity 1: dizzy File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 4
+    Info (12023): Found entity 2: char_7seg File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 50
+    Info (12023): Found entity 3: comparator9 File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 164
+    Info (12023): Found entity 4: circA File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 179
 Info (12127): Elaborating entity "vga_lab1" for the top level hierarchy
-Warning (10639): VHDL warning at vga_lab1.vhd(86): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 86
-Warning (10639): VHDL warning at vga_lab1.vhd(87): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 87
-Warning (10639): VHDL warning at vga_lab1.vhd(88): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 88
-Warning (10639): VHDL warning at vga_lab1.vhd(89): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
 Warning (10639): VHDL warning at vga_lab1.vhd(90): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
-Warning (10036): Verilog HDL or VHDL warning at vga_lab1.vhd(45): object "clk25" assigned a value but never read File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 45
-Warning (10540): VHDL Signal Declaration warning at vga_lab1.vhd(51): used explicit default value for signal "data_address" because signal was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 51
-Warning (10036): Verilog HDL or VHDL warning at vga_lab1.vhd(54): object "raw_data" assigned a value but never read File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 54
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(86): signal "hfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 86
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(86): signal "hsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 86
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(86): signal "hbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 86
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(86): signal "hva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 86
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(87): used initial value expression for variable "hstart" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 87
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(87): signal "hfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 87
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(87): signal "hsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 87
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(87): signal "hbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 87
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(88): signal "vfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 88
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(88): signal "vsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 88
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(88): signal "vbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 88
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(88): signal "vva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 88
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(89): used initial value expression for variable "vbottom" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(89): signal "vfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(89): signal "vsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(89): signal "vbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
-Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(89): signal "vva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 89
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(90): used initial value expression for variable "hend" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
+Warning (10639): VHDL warning at vga_lab1.vhd(91): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 91
+Warning (10639): VHDL warning at vga_lab1.vhd(92): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 92
+Warning (10639): VHDL warning at vga_lab1.vhd(93): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10639): VHDL warning at vga_lab1.vhd(94): constant value overflow File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10036): Verilog HDL or VHDL warning at vga_lab1.vhd(47): object "clk25" assigned a value but never read File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 47
+Warning (10540): VHDL Signal Declaration warning at vga_lab1.vhd(53): used explicit default value for signal "data_address" because signal was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 53
+Warning (10036): Verilog HDL or VHDL warning at vga_lab1.vhd(55): object "raw_data" assigned a value but never read File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 55
 Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(90): signal "hfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
 Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(90): signal "hsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
 Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(90): signal "hbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
 Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(90): signal "hva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 90
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(93): used initial value expression for variable "bg_vstart" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(94): used initial value expression for variable "bg_vstop" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(104): used initial value expression for variable "object_height" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 104
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(105): used initial value expression for variable "object_vstop" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 105
-Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(110): used initial value expression for variable "speed" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 110
-Warning (10873): Using initial value X (don't care) for net "object_vstart[0]" at vga_lab1.vhd(103) File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 103
-Info (12128): Elaborating entity "sync_clk" for hierarchy "sync_clk:disp_clk" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 73
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(91): used initial value expression for variable "hstart" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 91
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(91): signal "hfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 91
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(91): signal "hsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 91
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(91): signal "hbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 91
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(92): signal "vfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 92
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(92): signal "vsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 92
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(92): signal "vbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 92
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(92): signal "vva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 92
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(93): used initial value expression for variable "vbottom" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(93): signal "vfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(93): signal "vsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(93): signal "vbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(93): signal "vva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 93
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(94): used initial value expression for variable "hend" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(94): signal "hfp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(94): signal "hsp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(94): signal "hbp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10492): VHDL Process Statement warning at vga_lab1.vhd(94): signal "hva" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 94
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(97): used initial value expression for variable "bg_vstart" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 97
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(98): used initial value expression for variable "bg_vstop" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 98
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(109): used initial value expression for variable "object_height" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 109
+Warning (10542): VHDL Variable Declaration warning at vga_lab1.vhd(110): used initial value expression for variable "object_vstop" because variable was never assigned a value File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 110
+Info (12128): Elaborating entity "sync_clk" for hierarchy "sync_clk:disp_clk" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 75
 Info (12128): Elaborating entity "altpll" for hierarchy "sync_clk:disp_clk|altpll:altpll_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 142
 Info (12130): Elaborated megafunction instantiation "sync_clk:disp_clk|altpll:altpll_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 142
 Info (12133): Instantiated megafunction "sync_clk:disp_clk|altpll:altpll_component" with the following parameter: File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/sync_clk.vhd Line: 142
@@ -1113,7 +1207,11 @@ Info (12133): Instantiated megafunction "sync_clk:disp_clk|altpll:altpll_compone
 Info (12021): Found 1 design units, including 1 entities, in source file db/sync_clk_altpll.v
     Info (12023): Found entity 1: sync_clk_altpll File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/sync_clk_altpll.v Line: 30
 Info (12128): Elaborating entity "sync_clk_altpll" for hierarchy "sync_clk:disp_clk|altpll:altpll_component|sync_clk_altpll:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf Line: 898
-Info (12128): Elaborating entity "image_mem" for hierarchy "image_mem:imRead" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 76
+Info (12128): Elaborating entity "dizzy" for hierarchy "dizzy:scoredisp" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 78
+Info (12128): Elaborating entity "comparator9" for hierarchy "dizzy:scoredisp|comparator9:COMP" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 31
+Info (12128): Elaborating entity "circA" for hierarchy "dizzy:scoredisp|circA:circ" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 32
+Info (12128): Elaborating entity "char_7seg" for hierarchy "dizzy:scoredisp|char_7seg:H0" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/dizzy.vhd Line: 40
+Info (12128): Elaborating entity "image_mem" for hierarchy "image_mem:imRead" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 80
 Info (12128): Elaborating entity "altsyncram" for hierarchy "image_mem:imRead|altsyncram:altsyncram_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/image_mem.vhd Line: 60
 Info (12130): Elaborated megafunction instantiation "image_mem:imRead|altsyncram:altsyncram_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/image_mem.vhd Line: 60
 Info (12133): Instantiated megafunction "image_mem:imRead|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/image_mem.vhd Line: 60
@@ -1176,7 +1274,7 @@ Info (12128): Elaborating entity "decode_aj9" for hierarchy "image_mem:imRead|al
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_c3b.tdf
     Info (12023): Found entity 1: mux_c3b File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/mux_c3b.tdf Line: 23
 Info (12128): Elaborating entity "mux_c3b" for hierarchy "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|mux_c3b:mux2" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 42
-Info (12128): Elaborating entity "bg_spry" for hierarchy "bg_spry:bgread" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 79
+Info (12128): Elaborating entity "bg_spry" for hierarchy "bg_spry:bgread" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 83
 Info (12128): Elaborating entity "altsyncram" for hierarchy "bg_spry:bgread|altsyncram:altsyncram_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd Line: 60
 Info (12130): Elaborated megafunction instantiation "bg_spry:bgread|altsyncram:altsyncram_component" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd Line: 60
 Info (12133): Instantiated megafunction "bg_spry:bgread|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/bg_spry.vhd Line: 60
@@ -1337,6 +1435,10 @@ Warning (14284): Synthesized away the following node(s):
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a93" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2182
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a94" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2205
         Warning (14320): Synthesized away node "image_mem:imRead|altsyncram:altsyncram_component|altsyncram_g1r3:auto_generated|ram_block1a95" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/db/altsyncram_g1r3.tdf Line: 2228
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 20
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 20
+    Warning (13410): Pin "HEX1[6]" is stuck at VCC File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 20
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
@@ -1345,16 +1447,16 @@ Warning (15899): PLL "sync_clk:disp_clk|altpll:altpll_component|sync_clk_altpll:
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "chooseRes" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 12
     Warning (15610): No output dependent on input pin "moveDown" File: C:/Users/DAVID/Desktop/David/Desktop/u/EEE 308 Digital Circuit Analysis and Design/Lab/lab5_1/vga_lab1.vhd Line: 14
-Info (21057): Implemented 1209 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1429 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 14 output pins
-    Info (21061): Implemented 1142 logic cells
+    Info (21059): Implemented 28 output pins
+    Info (21061): Implemented 1348 logic cells
     Info (21064): Implemented 48 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 140 warnings
-    Info: Peak virtual memory: 4831 megabytes
-    Info: Processing ended: Thu Jan 13 22:51:33 2022
-    Info: Elapsed time: 00:00:37
-    Info: Total CPU time (on all processors): 00:00:47
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 142 warnings
+    Info: Peak virtual memory: 4824 megabytes
+    Info: Processing ended: Sun Jan 16 15:12:54 2022
+    Info: Elapsed time: 00:00:23
+    Info: Total CPU time (on all processors): 00:00:41
 
 
